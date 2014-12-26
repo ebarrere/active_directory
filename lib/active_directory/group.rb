@@ -104,6 +104,7 @@ module ActiveDirectory
                             @member_users.concat(group.member_users(true))
                           end
                         end
+                        @member_users.uniq! {|e| e.dn }
                         return @member_users
 		end
 
@@ -123,6 +124,7 @@ module ActiveDirectory
                             @member_groups.concat(group.member_groups(true))
                           end
                         end
+                        @member_groups.uniq! {|e| e.dn }
                         return @member_groups
 		end
 
