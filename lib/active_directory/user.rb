@@ -95,7 +95,10 @@ module ActiveDirectory
 		# Locked accounts can be unlocked with the User#unlock! method.
 		#
 		def locked?
-			!lockoutTime.nil? && lockoutTime.to_i != 0
+			if self.respond_to?(:lockoutTime)
+				!lockoutTime.nil? && lockoutTime.to_i != 0
+			else return nil
+			end
 		end
 
 		#
